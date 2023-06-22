@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import Content from "./components/Content"
+import UnsplashImage from "./components/UnsplashImage"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen h-screen">
+      <UnsplashImage image="https://images.unsplash.com/photo-1459213599465-03ab6a4d5931?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3wxMTgwOTN8MHwxfHNlYXJjaHwyNHx8bGFuZHNjYXBlfGVufDB8fHx8MTY4NzQyOTE1Nnww&ixlib=rb-4.0.3&q=80&w=1080" />
+      <Content />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
