@@ -3,12 +3,12 @@ import TopComponent from "./TopComponent"
 import MiddleComponent from "./MiddleComponent"
 import BottomComponent from "./BottomComponent"
 
-function Content() {
+function Content({ setImage, image }) {
   return (
     <div className="absolute w-full h-full  inset-0 z-30 flex-col">
       <TopComponent />
       <MiddleComponent />
-      <BottomComponent />
+      <BottomComponent setImage={setImage} image={image} />
     </div>
   )
 }

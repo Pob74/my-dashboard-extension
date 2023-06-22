@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Titan+One&display=swap");
+
+body {
+  text-shadow: 10px -5px 10px #242424;
+}
+
+.quote {
+  font-family: "Rubik Dirt", cursive;
+}
+
+.time {
+  font-family: "Titan One", cursive;
+  font-weight: 100;
+}

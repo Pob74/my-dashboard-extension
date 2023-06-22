@@ -6,8 +6,6 @@ function TopComponent() {
   const [name, setName] = useState(localStorage.getItem("name") || "Name ")
   const [nameEdit, setNameEdit] = useState(false)
 
-  console.log(name)
-
   const handleName = () => {
     localStorage.setItem("name", name)
     setNameEdit(false)

@@ -7,8 +7,6 @@ function Temperature() {
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
 
-  console.log(latitude, longitude)
-
   const apiKey = process.env.REACT_APP_WEATHER_API_KEY
 
   async function getTemperature() {
@@ -24,20 +22,9 @@ function Temperature() {
   }
 
   useEffect(() => {
-    getTemperature()
-    const interval = setInterval(getTemperature, 3600000) // Fetch every hour (3600000 milliseconds)
-
-    return () => {
-      clearInterval(interval) // Clear interval on component unmount
-    }
-  }, [])
-
-  useEffect(() => {
     const fetchLocation = async () => {
       try {
-        // Check if geolocation is supported by the browser
         if (navigator.geolocation) {
-          // Request current position
           const position = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject)
           })
@@ -54,9 +41,21 @@ function Temperature() {
 
     fetchLocation()
   }, [])
+
+  useEffect(() => {
+    if (latitude !== null && longitude !== null) {
+      //   getTemperature()
+    }
+    const interval = setInterval(getTemperature, 3600000) // Fetch every hour (3600000 milliseconds)
+
+    return () => {
+      clearInterval(interval) // Clear interval on component unmount
+    }
+  }, [latitude, longitude])
+
   return (
     <div className="text-white">
-      <h2>
+      <h2 className=" text-xl">
         {city} <span>{temperature} C</span>
       </h2>
     </div>

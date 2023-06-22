@@ -5,7 +5,7 @@ function UnsplashImage({ image }) {
     <img
       src={image}
       alt="unsplash"
-      className="object-cover w-full h-full relative"
+      className="object-cover w-full h-full relative "
     />
   )
 }
