@@ -20,8 +20,8 @@ function MiddleComponent() {
   }, [])
 
   return (
-    <div className="h-[60%] text-white flex justify-center items-center  ">
-      <div className="text-center mt-36 ">
+    <div className="h-[60%] text-white flex justify-center items-end ">
+      <div className="text-center mt-36 w-full">
         <div className="mb-6">
           <h2 className="time text-6xl font-bold  ">
             {time} <span>PM</span>
@@ -30,7 +30,7 @@ function MiddleComponent() {
         <Quotes />
         <div className="mb-6">
           <input
-            className="w-[250px] rounded-xl p-2 mt-4 text-center bg-transparent  border border-white focus:outline-none "
+            className="w-[250px] rounded-xl p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60  border border-white focus:outline-none "
             type="text"
             placeholder="Search on Google"
           />

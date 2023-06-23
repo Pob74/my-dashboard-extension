@@ -12,12 +12,12 @@ function TodoModal() {
         <button>
           <BsCheckCircle />
         </button>
-        <button>
+        {/* <button>
           <AiOutlineEdit />
         </button>
         <button>
           <AiOutlineDelete />
-        </button>
+        </button> */}
       </div>
     </div>
   )
