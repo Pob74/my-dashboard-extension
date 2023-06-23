@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import { RiCelsiusFill } from "react-icons/ri"
 import axios from "axios"
 
 function Temperature() {
@@ -44,7 +45,7 @@ function Temperature() {
 
   useEffect(() => {
     if (latitude !== null && longitude !== null) {
-      //   getTemperature()
+      //getTemperature()
     }
     const interval = setInterval(getTemperature, 3600000) // Fetch every hour (3600000 milliseconds)
 
@@ -54,10 +55,11 @@ function Temperature() {
   }, [latitude, longitude])
 
   return (
-    <div className="text-white">
+    <div className="text-white flex ">
       <h2 className=" text-xl">
-        {city} <span>{temperature} C</span>
+        Göteborg <span>20</span>
       </h2>
+      <RiCelsiusFill />
     </div>
   )
 }

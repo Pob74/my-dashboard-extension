@@ -4,6 +4,7 @@ import axios from "axios"
 import TodoModal from "./TodoModal"
 import { AiOutlineCheck } from "react-icons/ai"
 import { BsCheckCircle, BsXCircle } from "react-icons/bs"
+import { useSettings } from "../context/SettingsContext"
 
 function BottomComponent({ setImage, image }) {
   const [takenBy, setTakenBy] = useState(
@@ -13,9 +14,7 @@ function BottomComponent({ setImage, image }) {
   const [isOpen, setIsOpen] = useState(false)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  console.log(query)
-
-  console.log(takenBy)
+  const { showSettings, setShowSettings } = useSettings()
 
   const apiKey = process.env.REACT_APP_UNSPLASH_API_KEY
 
@@ -48,7 +47,10 @@ function BottomComponent({ setImage, image }) {
           By:
           <span>{takenBy}</span>
         </p>
-        <MdOutlineSettings className="ml-2 cursor-pointer" />
+        <MdOutlineSettings
+          className="ml-2 cursor-pointer"
+          onClick={() => setShowSettings(!showSettings)}
+        />
       </div>
       {!isOpen ? (
         <div className="w-[33%] flex justify-center ">

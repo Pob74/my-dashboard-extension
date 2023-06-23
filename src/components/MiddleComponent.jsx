@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react"
 import Quotes from "./Quotes"
+import { useSettings } from "../context/SettingsContext"
 
 function MiddleComponent() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
+
+  const { showSearch } = useSettings()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,13 +31,15 @@ function MiddleComponent() {
           </h2>
         </div>
         <Quotes />
-        <div className="mb-6">
-          <input
-            className="w-[250px] rounded-xl p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60  border border-white focus:outline-none "
-            type="text"
-            placeholder="Search on Google"
-          />
-        </div>
+        {showSearch && (
+          <div className="mb-6">
+            <input
+              className="w-[250px] rounded-xl p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60  border border-white focus:outline-none "
+              type="text"
+              placeholder="Search on Google"
+            />
+          </div>
+        )}
       </div>
     </div>
   )
