@@ -4,8 +4,9 @@ import MiddleComponent from "./MiddleComponent"
 import BottomComponent from "./BottomComponent"
 import { useSettings } from "../context/SettingsContext"
 import Settings from "./Settings"
+import TodoList from "./TodoList"
 
-function Content({ setImage, image }) {
+function Content() {
   const { showSettings } = useSettings()
 
   console.log(showSettings)
@@ -13,7 +14,8 @@ function Content({ setImage, image }) {
     <div className="absolute w-full h-full  inset-0 z-30 flex-col">
       <TopComponent />
       <MiddleComponent />
-      <BottomComponent setImage={setImage} image={image} />
+      <BottomComponent />
+      <TodoList />
       {showSettings && <Settings />}
     </div>
   )

@@ -6,15 +6,13 @@ import { AiOutlineCheck } from "react-icons/ai"
 import { BsCheckCircle, BsXCircle } from "react-icons/bs"
 import { useSettings } from "../context/SettingsContext"
 
-function BottomComponent({ setImage, image }) {
-  const [takenBy, setTakenBy] = useState(
-    localStorage.getItem("takenBy") || "Ken Cheung"
-  )
+function BottomComponent() {
   const [query, setQuery] = useState("")
   const [isOpen, setIsOpen] = useState(false)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { showSettings, setShowSettings } = useSettings()
+  const { showSettings, setShowSettings, setImage, setTakenBy, takenBy } =
+    useSettings()
 
   const apiKey = process.env.REACT_APP_UNSPLASH_API_KEY
 
@@ -64,7 +62,7 @@ function BottomComponent({ setImage, image }) {
             type="text"
             value={query}
             onChange={handleQueryChange}
-            className="rounded-lg p-2 mt-2 mr-2 text-black"
+            className="rounded-lg p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
             placeholder="Query or get random"
           />
           <button onClick={getNewImage}>
@@ -76,14 +74,18 @@ function BottomComponent({ setImage, image }) {
         </div>
       )}
       <div className="w-[33%] flex justify-end  ">
-        <p
-          className="cursor-pointer"
-          onClick={() => setModalIsOpen(!modalIsOpen)}
-        >
-          TODO
-        </p>
+        {!modalIsOpen ? (
+          <p
+            className="cursor-pointer"
+            onClick={() => setModalIsOpen(!modalIsOpen)}
+          >
+            TODO
+          </p>
+        ) : (
+          <TodoModal setModalIsOpen={setModalIsOpen} />
+        )}
       </div>
-      {modalIsOpen && <TodoModal />}
+      {/* {modalIsOpen && <TodoModal />} */}
     </div>
   )
 }

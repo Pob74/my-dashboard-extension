@@ -5,7 +5,7 @@ import { useSettings } from "../context/SettingsContext"
 function MiddleComponent() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
 
-  const { showSearch } = useSettings()
+  const { showSearch, showQuote } = useSettings()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,7 +30,7 @@ function MiddleComponent() {
             {time} <span>PM</span>
           </h2>
         </div>
-        <Quotes />
+        {showQuote && <Quotes />}
         {showSearch && (
           <div className="mb-6">
             <input

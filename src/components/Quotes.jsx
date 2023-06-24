@@ -8,6 +8,7 @@ function Quotes() {
     try {
       const response = await axios.get("https://api.quotable.io/random")
       setQuote(response.data.content)
+      console.log("quote", response.data.content)
     } catch (error) {
       console.log(error)
     }

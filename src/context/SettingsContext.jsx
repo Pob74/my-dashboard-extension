@@ -1,6 +1,6 @@
 // create context
 
-import React, { createContext, useState, useContext } from "react"
+import React, { createContext, useState, useContext, useEffect } from "react"
 
 export const SettingsContext = createContext()
 
@@ -9,8 +9,35 @@ export const SettingsProvider = ({ children }) => {
     localStorage.getItem("image") ||
       "https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   )
-  const [showSettings, setShowSettings] = useState(false)
-  const [showSearch, setShowSearch] = useState(false)
+  const [takenBy, setTakenBy] = useState(
+    localStorage.getItem("takenBy") || "Ken Cheung"
+  )
+
+  const [name, setName] = useState(localStorage.getItem("name") || "Name ")
+
+  const [showSettings, setShowSettings] = useState(
+    JSON.parse(localStorage.getItem("showSettings")) || false
+  )
+  const [showSearch, setShowSearch] = useState(
+    JSON.parse(localStorage.getItem("showSearch")) || false
+  )
+  const [showQuote, setShowQuote] = useState(
+    JSON.parse(localStorage.getItem("showQuote")) || false
+  )
+
+  useEffect(() => {
+    localStorage.setItem("name", name)
+    localStorage.setItem("image", image)
+    localStorage.setItem("takenBy", takenBy)
+  }, [name, image, takenBy])
+
+  console.log(image)
+
+  useEffect(() => {
+    localStorage.setItem("showSettings", JSON.stringify(showSettings))
+    localStorage.setItem("showSearch", JSON.stringify(showSearch))
+    localStorage.setItem("showQuote", JSON.stringify(showQuote))
+  }, [showSettings, showSearch, showQuote])
 
   return (
     <SettingsContext.Provider
@@ -20,7 +47,13 @@ export const SettingsProvider = ({ children }) => {
         showSettings,
         setShowSettings,
         showSearch,
-        setShowSearch
+        setShowSearch,
+        showQuote,
+        setShowQuote,
+        name,
+        setName,
+        takenBy,
+        setTakenBy
       }}
     >
       {children}
