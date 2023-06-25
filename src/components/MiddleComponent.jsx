@@ -6,8 +6,6 @@ function MiddleComponent() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
   const [searchQuery, setSearchQuery] = useState("")
 
-  console.log(searchQuery)
-
   const { showSearch, showQuote, showTime } = useSettings()
 
   useEffect(() => {

@@ -47,8 +47,6 @@ export const SettingsProvider = ({ children }) => {
     localStorage.setItem("takenBy", takenBy)
   }, [name, image, takenBy])
 
-  console.log(image)
-
   useEffect(() => {
     localStorage.setItem("showSettings", JSON.stringify(showSettings))
     localStorage.setItem("showSearch", JSON.stringify(showSearch))

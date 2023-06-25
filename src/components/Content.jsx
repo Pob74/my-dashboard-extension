@@ -11,7 +11,6 @@ function Content() {
   const { showSettings } = useSettings()
   const { todos } = useTodo()
 
-  console.log(showSettings)
   return (
     <div className="absolute w-full h-full  inset-0 z-30 flex-col">
       <TopComponent />
