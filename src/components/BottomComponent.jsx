@@ -11,16 +11,22 @@ function BottomComponent() {
   const [isOpen, setIsOpen] = useState(false)
   const [modalIsOpen, setModalIsOpen] = useState(false)
 
-  const { showSettings, setShowSettings, setImage, setTakenBy, takenBy } =
-    useSettings()
+  const baseUrl = process.env.REACT_APP_BASE_URL
+
+  const {
+    showSettings,
+    setShowSettings,
+    setImage,
+    setTakenBy,
+    takenBy,
+    showChangeBackground
+  } = useSettings()
 
   const apiKey = process.env.REACT_APP_UNSPLASH_API_KEY
 
   const getNewImage = async () => {
     try {
-      const response = await axios.get(
-        `https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=${query}`
-      )
+      const response = await axios.get(`${baseUrl}${query}`)
 
       setTakenBy(response.data.user.name)
       setImage(response.data.urls.full)
@@ -41,10 +47,12 @@ function BottomComponent() {
   return (
     <div className="h-[20%]  flex justify-between text-white items-end p-12 border-spacing-1 ">
       <div className="flex items-center w-[33%] ">
-        <p>
-          By:
-          <span>{takenBy}</span>
-        </p>
+        {takenBy !== "You" && (
+          <p>
+            By:
+            <span>{takenBy}</span>
+          </p>
+        )}
         <MdOutlineSettings
           className="ml-2 cursor-pointer"
           onClick={() => setShowSettings(!showSettings)}
@@ -52,9 +60,11 @@ function BottomComponent() {
       </div>
       {!isOpen ? (
         <div className="w-[33%] flex justify-center ">
-          <p className="cursor-pointer " onClick={() => setIsOpen(true)}>
-            New Background
-          </p>
+          {showChangeBackground && (
+            <p className="cursor-pointer " onClick={() => setIsOpen(true)}>
+              New Background
+            </p>
+          )}
         </div>
       ) : (
         <div>

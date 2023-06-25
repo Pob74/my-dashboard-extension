@@ -25,6 +25,22 @@ export const SettingsProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("showQuote")) || false
   )
 
+  const [showGreeting, setShowGreeting] = useState(
+    JSON.parse(localStorage.getItem("showGreeting")) || false
+  )
+
+  const [showWeather, setShowWeather] = useState(
+    JSON.parse(localStorage.getItem("showWeather")) || false
+  )
+
+  const [showTime, setShowTime] = useState(
+    JSON.parse(localStorage.getItem("showTime")) || false
+  )
+
+  const [showChangeBackground, setShowChangeBackground] = useState(
+    JSON.parse(localStorage.getItem("showChangeBackground")) || false
+  )
+
   useEffect(() => {
     localStorage.setItem("name", name)
     localStorage.setItem("image", image)
@@ -37,7 +53,22 @@ export const SettingsProvider = ({ children }) => {
     localStorage.setItem("showSettings", JSON.stringify(showSettings))
     localStorage.setItem("showSearch", JSON.stringify(showSearch))
     localStorage.setItem("showQuote", JSON.stringify(showQuote))
-  }, [showSettings, showSearch, showQuote])
+    localStorage.setItem("showGreeting", JSON.stringify(showGreeting))
+    localStorage.setItem("showWeather", JSON.stringify(showWeather))
+    localStorage.setItem("showTime", JSON.stringify(showTime))
+    localStorage.setItem(
+      "showChangeBackground",
+      JSON.stringify(showChangeBackground)
+    )
+  }, [
+    showSettings,
+    showSearch,
+    showQuote,
+    showGreeting,
+    showWeather,
+    showTime,
+    showChangeBackground
+  ])
 
   return (
     <SettingsContext.Provider
@@ -53,7 +84,15 @@ export const SettingsProvider = ({ children }) => {
         name,
         setName,
         takenBy,
-        setTakenBy
+        setTakenBy,
+        showGreeting,
+        setShowGreeting,
+        showWeather,
+        setShowWeather,
+        showTime,
+        setShowTime,
+        showChangeBackground,
+        setShowChangeBackground
       }}
     >
       {children}

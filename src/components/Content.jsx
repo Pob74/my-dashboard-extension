@@ -5,9 +5,11 @@ import BottomComponent from "./BottomComponent"
 import { useSettings } from "../context/SettingsContext"
 import Settings from "./Settings"
 import TodoList from "./TodoList"
+import { useTodo } from "../context/TodoContext"
 
 function Content() {
   const { showSettings } = useSettings()
+  const { todos } = useTodo()
 
   console.log(showSettings)
   return (
@@ -15,7 +17,7 @@ function Content() {
       <TopComponent />
       <MiddleComponent />
       <BottomComponent />
-      <TodoList />
+      {todos?.length > 0 && <TodoList />}
       {showSettings && <Settings />}
     </div>
   )

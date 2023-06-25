@@ -1,10 +1,40 @@
-import React from "react"
+import React, { useState } from "react"
 import { useSettings } from "../context/SettingsContext"
 import { BsCheckCircle, BsXCircle } from "react-icons/bs"
 
 function Settings() {
-  const { showSearch, setShowSearch, showQuote, setShowQuote, name, setName } =
-    useSettings()
+  const {
+    setTakenBy,
+    setImage,
+    showSearch,
+    setShowSearch,
+    showQuote,
+    setShowQuote,
+    name,
+    setName,
+    showGreeting,
+    setShowGreeting,
+    showWeather,
+    setShowWeather,
+    showTime,
+    setShowTime,
+    showChangeBackground,
+    setShowChangeBackground
+  } = useSettings()
+
+  const handleOwnImage = (e) => {
+    const file = e.target.files[0]
+
+    // Convert the file to Base64 string
+    const reader = new FileReader()
+    reader.onloadend = () => {
+      const base64String = reader.result
+      localStorage.setItem("image", base64String)
+      setImage(base64String)
+      setTakenBy("You")
+    }
+    reader.readAsDataURL(file)
+  }
 
   const handleName = () => {
     localStorage.setItem("name", name)
@@ -19,6 +49,25 @@ function Settings() {
   const handleShowQuote = () => {
     setShowQuote(!showQuote)
     localStorage.setItem("showQuote", showQuote)
+  }
+
+  const handleShowGreeting = () => {
+    setShowGreeting(!showGreeting)
+    localStorage.setItem("showGreeting", showGreeting)
+  }
+
+  const handleShowWeather = () => {
+    setShowWeather(!showWeather)
+    localStorage.setItem("showWeather", showWeather)
+  }
+
+  const handleShowTime = () => {
+    setShowTime(!showTime)
+    localStorage.setItem("showTime", showTime)
+  }
+  const handleShowChangeBackground = () => {
+    setShowChangeBackground(!showChangeBackground)
+    localStorage.setItem("showChangeBackground", showChangeBackground)
   }
 
   return (
@@ -51,6 +100,38 @@ function Settings() {
         >
           <p>Show Quote</p>
           {showQuote ? <BsCheckCircle /> : <BsXCircle />}
+        </div>
+        <div
+          onClick={handleShowGreeting}
+          className=" cursor-pointer flex items-center gap-4 w-full"
+        >
+          <p>Show Greeting</p>
+          {showGreeting ? <BsCheckCircle /> : <BsXCircle />}
+        </div>
+        <div
+          onClick={handleShowWeather}
+          className=" cursor-pointer flex items-center gap-4 w-full"
+        >
+          <p>Show Weather</p>
+          {showWeather ? <BsCheckCircle /> : <BsXCircle />}
+        </div>
+        <div
+          onClick={handleShowTime}
+          className=" cursor-pointer flex items-center gap-4 w-full"
+        >
+          <p>Show Time</p>
+          {showTime ? <BsCheckCircle /> : <BsXCircle />}
+        </div>
+        <div
+          onClick={handleShowChangeBackground}
+          className=" cursor-pointer flex items-center gap-4 w-full"
+        >
+          <p>Show Change Backround </p>
+          {showChangeBackground ? <BsCheckCircle /> : <BsXCircle />}
+        </div>
+        <div className=" cursor-pointer flex items-center gap-4 w-full">
+          <p>Upload Image </p>
+          <input type="file" onChange={handleOwnImage} />
         </div>
       </div>
     </div>

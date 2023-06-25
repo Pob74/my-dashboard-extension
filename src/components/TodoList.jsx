@@ -13,7 +13,7 @@ function TodoList() {
   return (
     <div className="absolute right-12 bottom-[10%] w-[350px] h-[auto] z-1000 bg-transparent p-6">
       <ul className="p-4 text-white">
-        {todos.map((todo) => (
+        {todos?.map((todo) => (
           <li
             className="p-2 flex items-center justify-between flex-wrap mb-3 rounded-xl bg-gray-800 opacity-80"
             key={todo.id}

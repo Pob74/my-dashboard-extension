@@ -22,7 +22,7 @@ function TodoModal({ setModalIsOpen }) {
       setTodos([...todos, newTodo])
 
       localStorage.setItem("todos", JSON.stringify(newTodo))
-
+      setModalIsOpen(false)
       setInputValue("") // Clear the input field after adding the todo
     }
   }
