@@ -15,6 +15,10 @@ export const SettingsProvider = ({ children }) => {
 
   const [name, setName] = useState(localStorage.getItem("name") || "Name ")
 
+  const [searchEngine, setSearchEngine] = useState(
+    localStorage.getItem("searchEngine") || "Google"
+  )
+
   const [showSettings, setShowSettings] = useState(
     JSON.parse(localStorage.getItem("showSettings")) || false
   )
@@ -41,11 +45,17 @@ export const SettingsProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("showChangeBackground")) || false
   )
 
+  const [temperatureUnit, setTemperatureUnit] = useState(
+    localStorage.getItem("temperatureUnit") || "C"
+  )
+
   useEffect(() => {
     localStorage.setItem("name", name)
     localStorage.setItem("image", image)
     localStorage.setItem("takenBy", takenBy)
-  }, [name, image, takenBy])
+    localStorage.setItem("searchEngine", searchEngine)
+    localStorage.setItem("temperatureUnit", temperatureUnit)
+  }, [name, image, takenBy, searchEngine, temperatureUnit])
 
   useEffect(() => {
     localStorage.setItem("showSettings", JSON.stringify(showSettings))
@@ -90,7 +100,11 @@ export const SettingsProvider = ({ children }) => {
         showTime,
         setShowTime,
         showChangeBackground,
-        setShowChangeBackground
+        setShowChangeBackground,
+        searchEngine,
+        setSearchEngine,
+        temperatureUnit,
+        setTemperatureUnit
       }}
     >
       {children}

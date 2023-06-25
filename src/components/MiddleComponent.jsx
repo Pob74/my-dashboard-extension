@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react"
 import Quotes from "./Quotes"
 import { useSettings } from "../context/SettingsContext"
+import { AiOutlineGoogle } from "react-icons/ai"
+import { BiLogoBing } from "react-icons/bi"
 
 function MiddleComponent() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
   const [searchQuery, setSearchQuery] = useState("")
 
-  const { showSearch, showQuote, showTime } = useSettings()
+  const { showSearch, showQuote, showTime, searchEngine } = useSettings()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,8 +28,33 @@ function MiddleComponent() {
   const handleSearch = (e) => {
     e.preventDefault()
     if (searchQuery.trim() !== "") {
-      const encodedQuery = encodeURIComponent(searchQuery)
-      window.location.href = `https://www.google.com/search?q=${encodedQuery}`
+      let searchURL = ""
+
+      switch (searchEngine) {
+        case "Google":
+          searchURL = `https://www.google.com/search?q=${encodeURIComponent(
+            searchQuery
+          )}`
+          break
+        case "Bing":
+          searchURL = `https://www.bing.com/search?q=${encodeURIComponent(
+            searchQuery
+          )}`
+          break
+
+        case "DuckDuckGo":
+          searchURL = `https://duckduckgo.com/?q=${encodeURIComponent(
+            searchQuery
+          )}`
+          break
+        default:
+          searchURL = `https://www.google.com/search?q=${encodeURIComponent(
+            searchQuery
+          )}`
+          break
+      }
+
+      window.location.href = searchURL
     }
   }
 
@@ -50,14 +77,16 @@ function MiddleComponent() {
         {showQuote && <Quotes />}
         {showSearch && (
           <div className="mb-6">
-            <input
-              className="w-[250px] rounded-full p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60 focus:opacity-80 hover:cursor-pointer  border border-white focus:outline-none "
-              type="text"
-              placeholder="Search on Google"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
+            <div>
+              <input
+                className="w-[250px] rounded-full p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60 focus:opacity-80 hover:cursor-pointer  border border-white focus:outline-none"
+                type="text"
+                placeholder={`Search on ${searchEngine}`}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
+              />
+            </div>
           </div>
         )}
       </div>
