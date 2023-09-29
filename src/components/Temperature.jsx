@@ -8,7 +8,7 @@ function Temperature() {
   const [city, setCity] = useState("")
   const [latitude, setLatitude] = useState(null)
   const [longitude, setLongitude] = useState(null)
-  const [icon, setIcon] = useState("")
+  const [icon, setIcon] = useState(localStorage.getItem("icon") || "")
   const [feeling, setFeeling] = useState("")
 
   const { temperatureUnit } = useSettings()
@@ -24,7 +24,9 @@ function Temperature() {
       console.log(response.data)
       setCity(response.data.location.name)
       setTemperature(response.data.current.temp_c)
-      setIcon(response.data.current.condition.icon)
+      const iconResponse = `https:${response.data.current.condition.icon}`
+      setIcon(iconResponse)
+      localStorage.setItem("icon", iconResponse)
       setFeeling(response.data.current.feelslike_c)
       console.log(response.data.current.feelslike_c)
     } catch (error) {
