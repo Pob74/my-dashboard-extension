@@ -1,9 +1,10 @@
-import React, { useState } from "react"
 import { useSettings } from "../context/SettingsContext"
 import { BsCheckCircle, BsXCircle } from "react-icons/bs"
+import { IoMdCloseCircleOutline } from "react-icons/io"
 
 function Settings() {
   const {
+    showSettings,
     setTakenBy,
     setImage,
     showSearch,
@@ -23,7 +24,8 @@ function Settings() {
     searchEngine,
     setSearchEngine,
     temperatureUnit,
-    setTemperatureUnit
+    setTemperatureUnit,
+    setShowSettings
   } = useSettings()
 
   const handleOwnImage = (e) => {
@@ -86,10 +88,15 @@ function Settings() {
   }
 
   return (
-    <div className="absolute text-white left-12 top-[25%] w-[300px]  h-[600px] z-1000 rounded-xl bg-gray-700 opacity-60 p-6">
+    <div className="absolute text-white left-12 top-[5%] w-[300px]  h-[600px] z-1000 rounded-xl bg-gray-700 opacity-60 p-6">
       <div className="w-full h-full flex-col space-y-6">
-        <div>
-          <p className="text-center">Settings</p>
+        <div className="flex justify-between">
+          <p className="underline font-bold">Settings</p>
+          <IoMdCloseCircleOutline
+            size={20}
+            className="cursor-pointer"
+            onClick={() => setShowSettings(!showSettings)}
+          />
         </div>
         <div className="flex items-center gap-2">
           <p>Name:</p>

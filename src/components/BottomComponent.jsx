@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { MdOutlineCancel, MdOutlineSettings } from "react-icons/md"
+import { MdOutlineSettings } from "react-icons/md"
 import axios from "axios"
 import TodoModal from "./TodoModal"
 import { AiOutlineCheck } from "react-icons/ai"
