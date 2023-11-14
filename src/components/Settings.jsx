@@ -88,7 +88,7 @@ function Settings() {
   }
 
   return (
-    <div className="absolute text-white left-12 top-[5%] w-[300px]  h-[600px] z-1000 rounded-xl bg-gray-700 opacity-60 p-6">
+    <div className="absolute text-white left-12 top-[15%] w-[300px]  max-h-[550px] z-1000 rounded-xl bg-gray-700 opacity-60 p-6">
       <div className="w-full h-full flex-col space-y-6">
         <div className="flex justify-between">
           <p className="underline font-bold">Settings</p>
