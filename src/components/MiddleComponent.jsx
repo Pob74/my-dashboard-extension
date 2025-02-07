@@ -8,8 +8,17 @@ function MiddleComponent() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
   const [searchQuery, setSearchQuery] = useState("")
 
-  const { showSearch, showQuote, showTime, searchEngine, timerPomodore } =
-    useSettings()
+  const {
+    showSearch,
+    showQuote,
+    showTime,
+    searchEngine,
+    timerPomodore,
+    timeSize,
+    timeFont
+  } = useSettings()
+
+  console.log(timeSize)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -65,13 +74,47 @@ function MiddleComponent() {
     }
   }
 
+  const getTimeSizeClass = () => {
+    switch (timeSize) {
+      case "small":
+        return "text-3xl"
+      case "medium":
+        return "text-5xl"
+      case "large":
+        return "text-6xl"
+      case "very large":
+        return "text-8xl"
+      default:
+        return "text-4xl" // Default fallback
+    }
+  }
+
+  const getTimeFontClass = () => {
+    switch (timeFont) {
+      case "titan":
+        return "time-titan"
+      case "anton":
+        return "time-anton"
+      case "kumar":
+        return "time-kumar"
+      case "manrope":
+        return "time-manrope"
+      case "rubik":
+        return "time-rubik"
+      default:
+        return "time-titan" // Default fallback
+    }
+  }
+
   return (
     <div className="h-[60%] text-white flex justify-center items-end ">
       {timerPomodore === "no" && (
         <div className="text-center mt-36 w-full">
           <div className="mb-6">
             {showTime && (
-              <h2 className="time text-7xl font-bold  ">
+              <h2
+                className={`time-${timeFont} ${getTimeSizeClass()} font-bold`}
+              >
                 {time} <span>PM</span>
               </h2>
             )}

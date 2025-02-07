@@ -25,7 +25,11 @@ function Settings() {
     setSearchEngine,
     temperatureUnit,
     setTemperatureUnit,
-    setShowSettings
+    setShowSettings,
+    timeSize,
+    setTimeSize,
+    timeFont,
+    setTimeFont
   } = useSettings()
 
   const handleOwnImage = (e) => {
@@ -45,6 +49,15 @@ function Settings() {
   const handleName = () => {
     localStorage.setItem("name", name)
     //   setNameEdit(false)
+  }
+  const handleChangeTimeFontSize = (timeSize) => {
+    setTimeSize(timeSize)
+    localStorage.setItem("timeSize", timeSize)
+  }
+
+  const handleChangeTimeFont = (timeFont) => {
+    setTimeFont(timeFont)
+    localStorage.setItem("timeFont", timeFont)
   }
 
   const handleShowSearch = () => {
@@ -88,7 +101,7 @@ function Settings() {
   }
 
   return (
-    <div className="absolute text-white left-[5%] top-[15%] w-[350px]  max-h-[650px] z-1000 rounded-xl bg-gray-900 opacity-60 px-6 py-10">
+    <div className="absolute text-white left-[5%] top-1/2 transform -translate-y-1/2 w-[350px] max-h-[700px] z-[1000] rounded-xl bg-gray-900 opacity-60 px-6 py-10">
       <div className="w-full h-full flex-col space-y-6">
         <div className="flex justify-between">
           <p className="underline font-bold">Settings</p>
@@ -160,6 +173,51 @@ function Settings() {
         >
           <p>Show Time</p>
           {showTime ? <BsCheckCircle /> : <BsXCircle />}
+        </div>
+        <div className=" cursor-pointer flex items-center gap-4 w-full">
+          <p>Time size </p>
+          <select
+            className="bg-transparent"
+            onChange={(e) => handleChangeTimeFontSize(e.target.value)}
+            value={timeSize}
+          >
+            <option className="bg-gray-700 opacity-60" value="small">
+              small
+            </option>
+            <option className="bg-gray-700 opacity-60" value="midium">
+              midium
+            </option>
+            <option className="bg-gray-700 opacity-60" value="large">
+              large
+            </option>
+            <option className="bg-gray-700 opacity-60" value="very large">
+              very large
+            </option>
+          </select>
+        </div>
+        <div className=" cursor-pointer flex items-center gap-4 w-full">
+          <p>Time font </p>
+          <select
+            className="bg-transparent"
+            onChange={(e) => handleChangeTimeFont(e.target.value)}
+            value={timeFont}
+          >
+            <option className="bg-gray-700 opacity-60" value="titan">
+              titan
+            </option>
+            <option className="bg-gray-700 opacity-60" value="anton">
+              anton
+            </option>
+            <option className="bg-gray-700 opacity-60" value="kumar">
+              kumar
+            </option>
+            <option className="bg-gray-700 opacity-60" value="manrope">
+              manrope
+            </option>
+            <option className="bg-gray-700 opacity-60" value="rubik">
+              rubik
+            </option>
+          </select>
         </div>
         <div
           onClick={handleShowChangeBackground}

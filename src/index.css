@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Rubik+Dirt&family=Titan+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kumar+One&family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
 
 body {
   text-shadow: 10px -5px 10px #242424;
@@ -12,7 +14,27 @@ body {
   font-family: "Rubik Dirt", cursive;
 }
 
-.time {
+.time-titan {
   font-family: "Titan One", cursive;
+  font-weight: 100;
+}
+
+.time-anton {
+  font-family: "Anton", cursive;
+  font-weight: 100;
+}
+
+.time-kumar {
+  font-family: "Kumar One", cursive;
+  font-weight: 100;
+}
+
+.time-manrope {
+  font-family: "Manrope", cursive;
+  font-weight: 100;
+}
+
+.time-rubik {
+  font-family: "Rubik Dirt", cursive;
   font-weight: 100;
 }

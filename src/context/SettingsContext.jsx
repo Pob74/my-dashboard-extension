@@ -17,6 +17,14 @@ export const SettingsProvider = ({ children }) => {
     localStorage.getItem("takenBy") || "Ken Cheung"
   )
 
+  const [timeFont, setTimeFont] = useState(
+    localStorage.getItem("timeFont") || "titan"
+  )
+
+  const [timeSize, setTimeSize] = useState(
+    localStorage.getItem("timeSize") || "text-2xl" // default to 'normal' if undefined
+  )
+
   const [name, setName] = useState(localStorage.getItem("name") || "Name ")
 
   const [searchEngine, setSearchEngine] = useState(
@@ -54,13 +62,24 @@ export const SettingsProvider = ({ children }) => {
   )
 
   useEffect(() => {
+    localStorage.setItem("timeFont", timeFont)
     localStorage.setItem("timerPomodore", timerPomodore)
     localStorage.setItem("name", name)
     localStorage.setItem("image", image)
     localStorage.setItem("takenBy", takenBy)
     localStorage.setItem("searchEngine", searchEngine)
     localStorage.setItem("temperatureUnit", temperatureUnit)
-  }, [name, image, takenBy, searchEngine, temperatureUnit, timerPomodore])
+    localStorage.setItem("timeSize", timeSize)
+  }, [
+    name,
+    image,
+    takenBy,
+    searchEngine,
+    temperatureUnit,
+    timerPomodore,
+    timeSize,
+    timeFont
+  ])
 
   useEffect(() => {
     localStorage.setItem("showSettings", JSON.stringify(showSettings))
@@ -80,7 +99,8 @@ export const SettingsProvider = ({ children }) => {
     showGreeting,
     showWeather,
     showTime,
-    showChangeBackground
+    showChangeBackground,
+    timeSize
   ])
 
   return (
@@ -111,7 +131,11 @@ export const SettingsProvider = ({ children }) => {
         temperatureUnit,
         setTemperatureUnit,
         timerPomodore,
-        setTimerPomodore
+        setTimerPomodore,
+        timeSize,
+        setTimeSize,
+        timeFont,
+        setTimeFont
       }}
     >
       {children}
