@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { MdOutlineSettings } from "react-icons/md"
 import axios from "axios"
 import TodoModal from "./TodoModal"
-import { AiOutlineCheck } from "react-icons/ai"
+
 import { BsCheckCircle, BsXCircle } from "react-icons/bs"
 import { useSettings } from "../context/SettingsContext"
 
@@ -72,6 +72,11 @@ function BottomComponent() {
             type="text"
             value={query}
             onChange={handleQueryChange}
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                getNewImage()
+              }
+            }}
             className="rounded-lg p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
             placeholder="Query or get random"
           />

@@ -15,15 +15,15 @@ function TodoList() {
       <ul className="p-4 text-white">
         {todos?.map((todo) => (
           <li
-            className="p-2 flex items-center justify-between flex-wrap mb-3 rounded-xl bg-gray-800 opacity-80"
+            className="p-3 flex items-center justify-between flex-wrap mb-3 rounded-xl bg-gray-800 opacity-80"
             key={todo.id}
           >
-            <span className="flex-1 break-all">{todo.text}</span>
+            <span className="flex-1 text-xl break-all">{todo.text}</span>
             <button
               onClick={() => handleDeleteTodo(todo.id)}
-              className="text-red-500 hover:text-red-700"
+              className="text-white hover:scale-110 transition-all duration-300"
             >
-              <AiOutlineDelete />
+              <AiOutlineDelete className="text-xl" />
             </button>
           </li>
         ))}

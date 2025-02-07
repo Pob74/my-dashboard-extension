@@ -6,9 +6,10 @@ import { useSettings } from "../context/SettingsContext"
 import Settings from "./Settings"
 import TodoList from "./TodoList"
 import { useTodo } from "../context/TodoContext"
+import PomodoroTimer from "./PomodoroTimer"
 
 function Content() {
-  const { showSettings } = useSettings()
+  const { showSettings, timerPomodore } = useSettings()
   const { todos } = useTodo()
 
   return (
@@ -18,6 +19,7 @@ function Content() {
       <BottomComponent />
       {todos?.length > 0 && <TodoList />}
       {showSettings && <Settings />}
+      {timerPomodore === "yes" && <PomodoroTimer />}
     </div>
   )
 }

@@ -1,6 +1,7 @@
 import Temperature from "./Temperature"
 import { useSettings } from "../context/SettingsContext"
 import { useEffect, useState } from "react"
+import PomodoroNotification from "./PomodoroNotification"
 
 function TopComponent() {
   const { name, showGreeting, showWeather } = useSettings()
@@ -24,11 +25,12 @@ function TopComponent() {
     <div className="flex justify-between h-[20%]  p-12">
       <div>
         {showGreeting && (
-          <h1 className="text-2xl text-white  font-bold drop-shadow-lg ">
+          <h1 className="text-2xl text-white  font-bold drop-shadow-lg  ">
             {greeting}, <span className="text-2xl font-extrabold">{name}</span>
           </h1>
         )}
       </div>
+      <PomodoroNotification />
       {showWeather && <Temperature />}
     </div>
   )

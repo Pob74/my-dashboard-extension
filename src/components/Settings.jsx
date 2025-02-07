@@ -88,7 +88,7 @@ function Settings() {
   }
 
   return (
-    <div className="absolute text-white left-12 top-[15%] w-[300px]  max-h-[550px] z-1000 rounded-xl bg-gray-700 opacity-60 p-6">
+    <div className="absolute text-white left-[5%] top-[15%] w-[350px]  max-h-[650px] z-1000 rounded-xl bg-gray-900 opacity-60 px-6 py-10">
       <div className="w-full h-full flex-col space-y-6">
         <div className="flex justify-between">
           <p className="underline font-bold">Settings</p>
@@ -189,7 +189,12 @@ function Settings() {
 
         <div className=" cursor-pointer flex items-center gap-4 w-full">
           <p>Upload Image </p>
-          <input type="file" onChange={handleOwnImage} />
+          <input
+            type="file"
+            onChange={handleOwnImage}
+            title="Upload Image"
+            placeholder="Upload Image"
+          />
         </div>
       </div>
     </div>

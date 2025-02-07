@@ -26,6 +26,11 @@ function TodoModal({ setModalIsOpen }) {
       setInputValue("") // Clear the input field after adding the todo
     }
   }
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleAddTodo()
+    }
+  }
 
   return (
     <div className=" w-[300px]  flex justify-end items-center">
@@ -34,16 +39,17 @@ function TodoModal({ setModalIsOpen }) {
           type="text"
           value={inputValue}
           onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
           placeholder="Add Todo"
           className="rounded-lg p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
         />
       </div>
       <div className="w-[10%] flex gap-3 items-center ">
         <button onClick={handleAddTodo}>
-          <BsCheckCircle className="cursor-pointer" />
+          <BsCheckCircle className="cursor-pointer text-xl" />
         </button>
         <button onClick={() => setModalIsOpen(false)}>
-          <BsXCircle className="cursor-pointer" />
+          <BsXCircle className="cursor-pointer text-xl" />
         </button>
       </div>
     </div>

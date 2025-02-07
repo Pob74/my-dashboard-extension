@@ -8,7 +8,8 @@ function MiddleComponent() {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
   const [searchQuery, setSearchQuery] = useState("")
 
-  const { showSearch, showQuote, showTime, searchEngine } = useSettings()
+  const { showSearch, showQuote, showTime, searchEngine, timerPomodore } =
+    useSettings()
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,30 +67,32 @@ function MiddleComponent() {
 
   return (
     <div className="h-[60%] text-white flex justify-center items-end ">
-      <div className="text-center mt-36 w-full">
-        <div className="mb-6">
-          {showTime && (
-            <h2 className="time text-6xl font-bold  ">
-              {time} <span>PM</span>
-            </h2>
+      {timerPomodore === "no" && (
+        <div className="text-center mt-36 w-full">
+          <div className="mb-6">
+            {showTime && (
+              <h2 className="time text-7xl font-bold  ">
+                {time} <span>PM</span>
+              </h2>
+            )}
+          </div>
+          {showQuote && <Quotes />}
+          {showSearch && (
+            <div className="mb-6">
+              <div>
+                <input
+                  className="w-[250px] rounded-full p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60 focus:opacity-80 hover:cursor-pointer  border border-white focus:outline-none"
+                  type="text"
+                  placeholder={`Search on ${searchEngine}`}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyDown={handleKeyDown}
+                />
+              </div>
+            </div>
           )}
         </div>
-        {showQuote && <Quotes />}
-        {showSearch && (
-          <div className="mb-6">
-            <div>
-              <input
-                className="w-[250px] rounded-full p-2 mt-4 text-center bg-[rgb(1,14,14)] opacity-60 focus:opacity-80 hover:cursor-pointer  border border-white focus:outline-none"
-                type="text"
-                placeholder={`Search on ${searchEngine}`}
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onKeyDown={handleKeyDown}
-              />
-            </div>
-          </div>
-        )}
-      </div>
+      )}
     </div>
   )
 }
