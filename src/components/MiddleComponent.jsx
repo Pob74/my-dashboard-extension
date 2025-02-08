@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react"
 import Quotes from "./Quotes"
 import { useSettings } from "../context/SettingsContext"
-import { AiOutlineGoogle } from "react-icons/ai"
-import { BiLogoBing } from "react-icons/bi"
 
 function MiddleComponent() {
-  const [time, setTime] = useState(new Date().toLocaleTimeString())
+  const [time, setTime] = useState(
+    new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+  )
   const [searchQuery, setSearchQuery] = useState("")
 
   const {
@@ -89,23 +89,6 @@ function MiddleComponent() {
     }
   }
 
-  const getTimeFontClass = () => {
-    switch (timeFont) {
-      case "titan":
-        return "time-titan"
-      case "anton":
-        return "time-anton"
-      case "kumar":
-        return "time-kumar"
-      case "manrope":
-        return "time-manrope"
-      case "rubik":
-        return "time-rubik"
-      default:
-        return "time-titan" // Default fallback
-    }
-  }
-
   return (
     <div className="h-[60%] text-white flex justify-center items-end ">
       {timerPomodore === "no" && (
@@ -115,7 +98,7 @@ function MiddleComponent() {
               <h2
                 className={`time-${timeFont} ${getTimeSizeClass()} font-bold`}
               >
-                {time} <span>PM</span>
+                {time} <span></span>
               </h2>
             )}
           </div>

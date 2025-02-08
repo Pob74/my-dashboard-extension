@@ -8,7 +8,6 @@ const PomodoroTimer = () => {
   const [currentTime, setCurrentTime] = useState(new Date())
   const { setTimerPomodore } = useSettings()
 
-  // Update system clock every second
   useEffect(() => {
     const clockTimer = setInterval(() => {
       setCurrentTime(new Date())
@@ -16,7 +15,6 @@ const PomodoroTimer = () => {
     return () => clearInterval(clockTimer)
   }, [])
 
-  // Pomodoro Timer Logic
   useEffect(() => {
     let timer
     if (isActive && timeLeft > 0) {
@@ -26,6 +24,7 @@ const PomodoroTimer = () => {
     } else if (timeLeft === 0) {
       clearInterval(timer)
       alert("Pomodoro session is over!")
+      resetTimer() // Important: Reset the timer when it reaches 0
     }
     return () => clearInterval(timer)
   }, [isActive, timeLeft])
@@ -36,64 +35,51 @@ const PomodoroTimer = () => {
     setTimeLeft(25 * 60)
   }
 
-  // Get real system time
   const hours = currentTime.getHours()
   const minutes = currentTime.getMinutes()
   const seconds = currentTime.getSeconds()
 
-  // Clock Hand Angles
   const secondHandAngle = seconds * 6
   const minuteHandAngle = minutes * 6 + seconds * 0.1
   const hourHandAngle = (hours % 12) * 30 + minutes * 0.5
 
-  // Pomodoro Progress Circle
-  const circlePercentage = (timeLeft / (25 * 60)) * 100
-  const strokeDasharray = (circlePercentage * 2 * Math.PI * 150) / 100
+  const radius = 140 // Radius of the circle
+  const circumference = 2 * Math.PI * radius
+  const progress = ((25 * 60 + timeLeft) / (25 * 60)) * circumference // Calculate progress
 
-  // Format Countdown Timer
   const timerMinutes = Math.floor(timeLeft / 60)
   const timerSeconds = timeLeft % 60
 
   return (
     <div className="absolute inset-0 z-50 flex flex-col items-center justify-center h-screen bg-gray-900/75 text-white">
-      <div className="text-4xl font-bold mb-8">On Brake</div>
+      <div className="text-4xl font-bold mb-8">On Break</div>
 
-      <div className="relative w-80 h-80">
-        {/* Clock Face */}
+      {}
+
+      <div className="relative flex w-80 h-80">
         <svg className="absolute w-full h-full">
           <circle
-            cx="50%"
-            cy="50%"
-            r="150"
-            stroke="#2c3e50"
-            strokeWidth="22"
+            cx="150"
+            cy="150"
+            r={radius}
+            stroke="#4CAF50"
+            strokeWidth="10"
             fill="none"
-          />
-        </svg>
-
-        {/* Pomodoro Progress Circle */}
-        <svg className="absolute w-full h-full transform rotate-90">
-          <circle
-            cx="50%"
-            cy="50%"
-            r="150"
-            stroke="#ffffff"
-            strokeWidth="12"
-            fill="none"
-            strokeDasharray={strokeDasharray}
-            strokeDashoffset={-strokeDasharray}
-            style={{ transition: "stroke-dasharray 0.1s linear" }}
+            strokeDasharray={circumference}
+            strokeDashoffset={progress}
+            style={{ transition: "stroke-dashoffset 0.1s linear" }}
+            transform={`rotate(${-90} 150 150)`}
           />
         </svg>
 
         {/* Clock Hands */}
+
         <svg className="absolute w-full h-full">
-          {/* Hour Hand */}
           <line
             x1="150"
             y1="150"
             x2="150"
-            y2="90" // Adjust length from center
+            y2="90"
             stroke="white"
             strokeWidth="8"
             strokeLinecap="round"
@@ -102,6 +88,7 @@ const PomodoroTimer = () => {
           />
 
           {/* Minute Hand */}
+
           <line
             x1="150"
             y1="150"
@@ -113,7 +100,9 @@ const PomodoroTimer = () => {
             transform={`rotate(${minuteHandAngle} 150 150)`}
             style={{ transition: "transform 0.1s linear" }}
           />
+
           {/* Second Hand */}
+
           <line
             x1="150"
             y1="150"
@@ -126,15 +115,12 @@ const PomodoroTimer = () => {
             style={{ transition: "transform 0.1s linear" }}
           />
         </svg>
-
-        {/* Digital Timer Display */}
-        <div className="absolute inset-0 flex items-center justify-center text-6xl font-mono">
+        <div className="absolute top-[56%] left-[47%] translate-x-[-50%] translate-y-[-50%] flex items-center justify-center text-6xl font-mono">
           {timerMinutes < 10 ? `0${timerMinutes}` : timerMinutes}:
           {timerSeconds < 10 ? `0${timerSeconds}` : timerSeconds}
         </div>
       </div>
 
-      {/* Buttons */}
       <div className="flex mt-6 space-x-4">
         <button
           onClick={toggleTimer}

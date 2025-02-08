@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react"
-import axios from "axios"
+import quotes from "../quotes.json"
 
 function Quotes() {
   const [quote, setQuote] = useState("")
 
-  const getQuote = async () => {
-    try {
-      const response = await axios.get("https://api.quotable.io/random")
-      setQuote(response.data.content)
-      console.log("quote", response.data.content)
-    } catch (error) {
-      console.log(error)
-    }
+  const getQuote = () => {
+    const randomIndex = Math.floor(Math.random() * quotes.quotes.length)
+    console.log(quotes.quotes[randomIndex])
+    setQuote(quotes.quotes[randomIndex])
   }
 
   useEffect(() => {
@@ -19,8 +15,8 @@ function Quotes() {
   }, [])
 
   return (
-    <div className="mb-6 mx-auto max-w-[70%] text-white px-6 lg:px-0">
-      <p className="quote text-[1.5rem]">{quote}</p>
+    <div className="mb-6 mx-auto max-w-[70%] text-white px-6 lg:px-0 flex items-center justify-center gap-4">
+      <p className="quote text-[1.7rem]">{quote}</p>
     </div>
   )
 }

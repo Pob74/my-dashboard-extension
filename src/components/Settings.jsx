@@ -101,7 +101,7 @@ function Settings() {
   }
 
   return (
-    <div className="absolute text-white left-[5%] top-1/2 transform -translate-y-1/2 w-[350px] max-h-[700px] z-[1000] rounded-xl bg-gray-900 opacity-60 px-6 py-10">
+    <div className="absolute text-white left-[5%] top-1/2 transform -translate-y-1/2 w-[350px] max-h-[700px] z-[1000] rounded-xl bg-gray-900/80 px-6 py-10">
       <div className="w-full h-full flex-col space-y-6">
         <div className="flex justify-between">
           <p className="underline font-bold">Settings</p>

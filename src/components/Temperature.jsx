@@ -64,7 +64,7 @@ function Temperature() {
     return () => {
       clearInterval(interval) // Clear interval on component unmount
     }
-  }, [latitude, longitude])
+  }, [latitude, longitude, getTemperature])
 
   const displayTemperature = () => {
     if (temperatureUnit === "Celsius") {

@@ -13,7 +13,7 @@ function Content() {
   const { todos } = useTodo()
 
   return (
-    <div className="absolute w-full h-full  inset-0 z-30 flex-col">
+    <div className="absolute w-full h-full  inset-0 z-30 flex-col bg-black/70">
       <TopComponent />
       <MiddleComponent />
       <BottomComponent />
