@@ -16,7 +16,7 @@ function Quotes() {
 
   return (
     <div className="mb-6 mx-auto max-w-[70%] text-white px-6 lg:px-0 flex items-center justify-center gap-4">
-      <p className="quote text-[1.7rem]">{quote}</p>
+      <p className="quote text-[1.7rem] tracking-wider">{quote}</p>
     </div>
   )
 }

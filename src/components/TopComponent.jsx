@@ -25,7 +25,7 @@ function TopComponent() {
     <div className="flex justify-between h-[20%]  p-12">
       <div>
         {showGreeting && (
-          <h1 className="text-2xl text-white  font-bold drop-shadow-lg  ">
+          <h1 className="text-2xl text-white  font-bold drop-shadow-lg tracking-wider  ">
             {greeting}, <span className="text-2xl font-extrabold">{name}</span>
           </h1>
         )}

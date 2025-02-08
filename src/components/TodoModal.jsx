@@ -41,7 +41,7 @@ function TodoModal({ setModalIsOpen }) {
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
           placeholder="Add Todo"
-          className="rounded-lg p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
+          className="rounded-full p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
         />
       </div>
       <div className="w-[10%] flex gap-3 items-center ">

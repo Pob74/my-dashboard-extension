@@ -51,8 +51,8 @@ const PomodoroTimer = () => {
   const timerSeconds = timeLeft % 60
 
   return (
-    <div className="absolute inset-0 z-50 flex flex-col items-center justify-center h-screen bg-gray-900/75 text-white">
-      <div className="text-4xl font-bold mb-8">On Break</div>
+    <div className="absolute inset-0 z-50 flex flex-col items-center justify-center h-screen bg-gray-900/75 text-gray-500 ">
+      <div className="text-4xl font-bold mb-8 tracking-wider">On Break</div>
 
       {}
 

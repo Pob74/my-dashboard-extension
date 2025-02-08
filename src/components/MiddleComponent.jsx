@@ -96,7 +96,7 @@ function MiddleComponent() {
           <div className="mb-6">
             {showTime && (
               <h2
-                className={`time-${timeFont} ${getTimeSizeClass()} font-bold`}
+                className={`time-${timeFont} ${getTimeSizeClass()} font-bold tracking-wider`}
               >
                 {time} <span></span>
               </h2>

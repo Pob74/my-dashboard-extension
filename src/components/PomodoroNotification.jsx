@@ -10,8 +10,10 @@ const PomodoroNotification = () => {
           onClick={() => setTimerPomodore("yes")}
           className="absolute top-5 left-1/2 transform -translate-x-1/2 bg-transparent backdrop-blur-sm p-6 rounded-lg shadow-lg z-50 text-center cursor-pointer"
         >
-          <h2 className="text-2xl font-semibold text-gray-200 mb-2">Tired!</h2>
-          <p className="text-gray-300">Take a break!</p>
+          <h2 className="text-2xl font-semibold text-gray-200 mb-2 tracking-wider">
+            Tired!
+          </h2>
+          <p className="text-gray-300 tracking-wider">Take a break!</p>
         </div>
       )}
     </>

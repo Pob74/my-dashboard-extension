@@ -61,7 +61,10 @@ function BottomComponent() {
       {!isOpen ? (
         <div className="w-[33%] flex justify-center ">
           {showChangeBackground && (
-            <p className="cursor-pointer " onClick={() => setIsOpen(true)}>
+            <p
+              className="cursor-pointer tracking-wider "
+              onClick={() => setIsOpen(true)}
+            >
               New Background
             </p>
           )}
@@ -77,7 +80,7 @@ function BottomComponent() {
                 getNewImage()
               }
             }}
-            className="rounded-lg p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
+            className="rounded-full p-2 mt-2 mr-2 text-white bg-[rgb(1,14,14)] opacity-60"
             placeholder="Query or get random"
           />
           <button onClick={getNewImage}>
@@ -91,7 +94,7 @@ function BottomComponent() {
       <div className="w-[33%] flex justify-end  ">
         {!modalIsOpen ? (
           <p
-            className="cursor-pointer"
+            className="cursor-pointer tracking-widest"
             onClick={() => setModalIsOpen(!modalIsOpen)}
           >
             TODO
